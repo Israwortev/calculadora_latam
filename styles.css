@@ -1,0 +1,184 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+body{
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #F2F5FA;
+}
+
+/* styles del contenedor */
+
+.wcip-calculador{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.contain-calculadora{
+    display: flex;
+    flex-direction: row;
+    gap: 2em;
+}
+/* contenedor izquierdo */
+
+.left{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+}
+.text-monto{
+    display: flex;
+    flex-direction: space;
+    justify-content: space-between;
+    align-items: baseline;
+}
+
+.monto{
+    display: flex;
+    flex-direction: column;
+}
+.inputext{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    text-align: end; 
+    border: 3px solid #14DA13;
+    border-radius: 4px;
+}
+
+.containinput{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    text-align: end; 
+    padding: 12px;
+}
+.containinput p{
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.redinput{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    text-align: end; 
+    border: 3px solid #B70000;
+    border-radius: 4px;
+}
+.redinput input[type='text']{
+    font-family: 'Poppins', sans-serif;
+    font-size: 16;
+    font-weight: 600;
+    border:none;
+    text-align: right;
+    background-color: transparent;
+}
+.redinput input[type='text']:focus{
+    outline: none;
+}
+
+.inputext input[type='text']{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    border: none;
+    text-align: right;
+    background-color: transparent;
+}
+
+.inputext input[type="text"]:focus{
+        outline: none;
+      }
+
+
+.monto p{
+    font-size: 12px;
+    padding: 0;
+    margin: 0;
+}
+
+/* estilos input range */
+.range-age{
+    width: 100%;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    gap: 2em;
+}
+input [type='range']{
+    width: 100%;
+}
+
+input[type="range"]::-moz-range-progress {
+    background-color: #14DA13 ;
+    height: 1em;
+  }
+
+  #years {
+    position: absolute;
+    top: 50px;
+    margin-left: -2.3em;
+    font-size: 18px;
+    line-height: 27px;
+    color: #14DA13;
+  }
+  /* Aqui va la card con la tabla de porcentajes */
+  .containtab-porcent{
+    display: flex;
+    flex-direction: column;
+    text-align: center;
+    border-radius: 12px;
+    background: rgba(255, 255, 255, 0.50);
+  }
+
+  .titletab p{
+    font-family: Poppins;
+    font-size: 16px;
+    font-weight: 600;
+  }
+  table{
+    width: 100%;
+  }
+
+  th, td{
+    width: 12.2%;
+    text-align: center;
+  }
+  td:first-child{
+    width: 14.2%;
+    text-align: left;
+    font-weight: 600;
+  }
+/* Aquí van los resultados del input */
+.inversion{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.rendimiento-bruto{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.monto-final{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.monto-final p{
+    font-size: 20px;
+    font-weight: 600;
+}
+  
+/* contenedor derecho */
+
+.right{
+    width: 100%;
+    border-radius: 16px;
+    opacity: 0.699999988079071;
+    background:  #FFF;
+}
