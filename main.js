@@ -56,10 +56,9 @@ let resultadoRendimiento;
 
 function defaultValues () {
   if (inversionMount.value === '' || inversionMount.value === '0') {
-    inversionMount.value = '2500';
+    inversionMount.value = 2500;
   }
 };
-
 
 inversionMount.addEventListener('input', (e) => {
   const numeroIngresado = inversionMount.value;
@@ -355,3 +354,13 @@ setTimeout(function() {
 updateProgressBar(resultProgress);
 }, 1000);
 
+// ************************************************************
+// Esta es la suma de las cantidades
+
+// function resultadoCirculo(value, resultadoRendimiento) {
+//   const sumaDeCantidades = value + resultadoRendimiento;
+//   const divisionDeCantidades = (resultadoRendimiento *100) / sumaDeCantidades ;
+//   const resultadoDeCantidades = divisionDeCantidades.toFixed(0)
+
+//   return resultadoDeCantidades
+// }
