@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <link rel="stylesheet" href="./style.css">
+    <title>Document</title>
+</head>
+<body>
+    <div class="contain-calcu-mx">
+        <!-- Contenedor izquierdo -->
+        <div class="containleft">
+            <div class="head-title">
+                <h2 style="text-align:start; padding-bottom: 15px;">Calcula tus rendimientos</h2>
+                <p class="heavyweight">Rendimientos del <span class="green-font" id="porcentaje-mensual-head" style="padding:2px"> 2% </span> mensual fijo; <span class="green-font" id="porcentaje-anual-head"></span> <span class="green-font">24% anual bruto</span>.</p>
+            </div>
+            <div class="contain-inputs">
+                <div class="select-div">
+                <div class="clickto-modal-person">
+                <div class="containbtnperson">
+                <p class="heavyweight">Tipo de persona</p>
+                <img class="info-vector" src="https://wortev.capital/wp-content/uploads/2023/08/info-vector.jpg" />
+                </div>
+                <!-- Aqui esta el modal de tipo de Persona -->
+                <div class="modal-person">
+                    <p class="heavyweight">Persona física</p>
+                     <p>Individuo que realiza cualquier actividad económica (vendedor, comerciante, empleado, profesionista, etc..) el cual tiene derechos y obligaciones, la persona física NO emite facturas para estos fines, únicamente recibe una constancia de retención por parte de WORTEV CAPITAL.</p>
+                     <p class="heavyweight">Persona moral</p>
+                     <p>Sociedad conformada por personas físicas o empresas que se unen para la realización de un objetivo social que puede ser con o sin fines de lucro (SA de CV, SAPI de CV, S de RL, entre otras). La persona moral SI emite una factura para estos fines la cual es el soporte para los rendimientos recibidos de parte de  WORTEV CAPITAL.</p>
+                </div>
+             </div>
+             <div class="select-person" id="selectPersonContainer">
+                <select class="form-select" name="select" id="selectPersona">
+                    <option value="fisica" selected>Persona física</option>
+                    <option value="moral" >Persona moral</option>
+                  </select>
+            </div>
+        </div>
+              <div class="contain-monto">
+                  <p class="heavyweight">Monto de inversión</p>
+                  <div class="monto">
+                    <div class="inputext">
+                    <div class="containinput">
+                    <p style="margin:0;">$</p>
+                    <input type="text" pattern="[1-9][0-9]*" id="inversion-mount" placeholder="10,000.00" />
+                    <p style="margin:0;">MXN</p>
+                    </div>
+                    </div>
+                    <p class="grayfont" style="padding-right:.8em;">Inversión mínima de $ 10,000 MXN</p>
+                    </div>
+              </div>
+            </div>
+            <div class="range-left">
+                <p class="heavyweight">Plazo a invertir</p>
+                <div class="range">
+                    <div class="textrange">
+                    <div class="value2">1</div>
+                    <p class="anio">año</p>
+                    <p class="anios">años</p>
+                    </div>
+                    <input type="range" min="1" max="10" value="1" id="capital-range" class="wcip-range" />
+                    <div class="from-to">
+                        <p>1 año</p>
+                        <p>10 años</p>
+                    </div> 
+                  </div>
+                  <div class="inversion-rendimiento">
+                    <div class="inversiontotal-left">
+                        <p>Con una inversión de</p>
+                        <p id="inversionDe"></p>
+                    </div>
+                    <div class="rendimientototal-left">
+                        <p style="
+                        max-width: 60%;
+                    ">Obtendrás un rendimiento neto total de</p>
+                        <h2 class="green-font" id="rendimientoBruto"></h2>
+                    </div>
+                    <div class="pago-rendimientos">
+                        <p class="pago">Pago de rendimientos</p>
+                        <div class="mensual-anual">
+                            <div class="pagos">
+                                <p>mensual</p>
+                                <p style="text-align: end;">anual</p>
+                            </div>
+                            <div class="pagos">
+                                <p id="pago-mensual"></p>
+                                <p id="pago-anual"></p>
+                            </div>
+                        </div>
+                    </div>
+                  </div>
+            </div>
+            <!--<button class="calc_btn_green calc_helper_top">Quiero invertir</button>-->
+        <div class="contenedorboton">
+        <div class="boton-verde">
+        <a  href="https://panel-mx.wortev.capital" target="_blank" class="elementor-button">
+        <span class="elementor-button-text">
+        INVERTIR
+        </span>
+        </a>
+        </div>    
+        </div>
+        </div>
+        <!-- Contenedor derecho -->
+        <div class="containright">
+            <div id="chart"></div>
+            <div class="progresscircle" id="progress-bar">
+                <svg width="100%" height="100%" viewBox="0 0 100 100">
+                <circle cx="50" cy="50" r="40" stroke="#2B2B2B" stroke-dasharray="251.32741228718345" stroke-dashoffset="0"></circle>
+                <circle cx="50" cy="50" r="40" stroke="#14DA13" stroke-dasharray="251.32741228718345" stroke-dashoffset="226.1946710584651"></circle>
+                </svg>
+        </div>
+        <div class="circletext">
+            <div class="contenttext">
+            <p class="blackfont">Inversión</p>
+            <h2 class="blackfont" id="inversion-circulo"></h2>
+            </div>
+            <div class="contenttext">
+            <p class="tinygreenfont">Rendimientos totales</p>
+            <h2 class="green-font" id="rendimientos-circulo"></h2>        
+            </div>
+            </div>
+            <div class="datos-tab">
+                <div style="padding-bottom: .5em;" class="tab">
+                    <p>Monto de inversión</p>
+                    <h2 style="font-weight: 400;" id="inversion-right"></h2>
+                </div>
+                <div class="tab">
+                    <table class="tabcantidades" style="margin:0 !important;">
+                    <tr>
+                        <td><p>Rendimiento mensual</p></td>
+                        <td class="numcantidades"><p id="rendimientosinIVA"></p></td>
+                        <td class="porcentcant"><p class="green-font">2%</p></td>
+                      </tr>
+                    </table>
+                </div>
+                <div class="tab">
+                    <table class="tabcantidades" style="margin:0 !important;">
+                    <tr>
+                        <td><p>IVA sobre rendimiento</p></td>
+                        <td class="numcantidades"><p id="rendimientoIVA"></p></td>
+                        <td class="porcentcant"><p class="green-font">16%</p></td>
+                      </tr>
+                    </table>
+                </div>
+                <div>
+                <div class="line"></div>
+                <div class="mensual-operation">
+                    <table class="tabcantidades">
+                    <tr>
+                        <td></td>
+                        <td class="numcantidades"><p id="totalMensual"></p></td>
+                        <td class="porcentcant"><p>mensual</p></td>
+                      </tr>
+                    </table>
+                </div>
+            </div>
+                <div class="tabpfisica">
+                        <div class="tab">
+                            <table class="tabcantidades">
+                            <tr>
+                                <td><p>Rentención IVA <span class="gray-font">sobre 2%</span></p></td>
+                                <td class="numcantidades"><p id="retencionPorIVA"></p></td>
+                                <td class="porcentcant"><p class="gray-font">16%</p></td>
+                              </tr>
+                            </table>
+                    </div>
+                    <div class="tab">
+                        <table class="tabcantidades">
+                        <tr>
+                            <td><p>Rentención ISR <span class="gray-font">sobre 2%</span></p></td>
+                            <td class="numcantidades"><p id="retencionPorISR"></p></td>
+                            <td class="porcentcant"><p class="gray-font">20%</p></td>
+                          </tr>
+                        </table>
+                    </div>
+                    <div class="separador">
+                        <div class="line"></div>
+                        <table class="tabcantidades">
+                            <tr>
+                              <td></td>
+                              <td class="numcantidades"> <p id="totalconretenciones"></p></td>
+                              <td class="porcentcant"><p>mensual</p></td>
+                            </tr>
+                          </table>
+                    </div>
+                </div>
+                <div class="finalresult">
+                    <div class="tab">
+                        <table class="tabcantidades">
+                            <tr>
+                              <td><p>Rendimientos netos mensuales</p></td>
+                              <td class="numcantidades"><p id="resultmonth" class="green-font"></p></td>
+                              <td class="porcentcant"><p class="gray-font">MXN</p></td>
+                            </tr>
+                          </table>
+                </div>
+                <div class="black-line"></div>
+                <div class="tab">
+                    <table class="tabcantidades">
+                        <tr>
+                          <td><p>Rendimientos netos Anuales</p></td>
+                          <td class="numcantidades"><h2 id="resultyear" class="green-font"></h2></td>
+                          <td class="porcentcant"><p class="gray-font">MXN</p></td>
+                        </tr>
+                      </table>
+                </div>
+                </div>
+            </div>
+    </div>
+    <div class="modalmenordemin" id="modalmin">
+        <p><strong>El monto mínimo de inversión es a partir de $10,000.00</strong></p>
+    </div>
+    <div class="modalmax" id="modalmax">
+        <div class="modalheader">
+            <img src="https://wortev.capital/wp-content/uploads/2023/10/x.svg">
+        </div>
+        <p>El monto máximo de inversión es de <br/><strong>$20,000,000.00</strong></p>
+        <div class="contenedorboton">
+            <div class="boton-verde">
+            <a  href="tel:+5580468139" target="_blank" class="elementor-button">
+            <span class="elementor-button-text">
+            ME INTERESA UNA CANTIDAD MAYOR
+            </span>
+            </a>
+            </div>    
+            </div>
+            </div>
+    </div>
+    <script src="https://cdn.jsdelivr.net/npm/apexcharts"></script>
+    <script src="./mainv3.js"></script>
+</body>
+</html>

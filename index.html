@@ -8,187 +8,191 @@
 </head>
 <body>
     <div class="wcip-calculador">
-    <h2>Simula tus rendimientos</h2>
-    <div class="contain-calculadora">
-    <!-- contenedor de la izquierda -->
-    <div class="left"> 
-    <div class="text-monto">
-    <h4>Monto de inversión</h4>
-    <div class="monto">
-    <div class="inputext">
-    <div class="containinput">
-    <p>$</p>
-    <input type="text" pattern="[0-9]*" id="inversion-mount"/>
-    <p>USD</p>
+        <h2>Simula tus rendimientos</h2>
+        <div class="contain-calculadora">
+        <!-- contenedor de la izquierda -->
+        <div class="left"> 
+        <div class="text-monto">
+        <h4>Monto de inversión</h4>
+        <div class="monto">
+        <div class="inputext">
+        <div class="containinput">
+        <p>$</p>
+        <input type="text" pattern="[0-9]*" id="inversion-mount"/>
+        <p>USD</p>
+        </div>
+        </div>
+        <p>Inversión mínima de $ 2,500 USD</p>
+        </div>
+        </div>
+        <div class="range-age">
+        <h4>Plazo a invertir</h4>
+        <p id="years"></p>
+        <div class="range-from">
+        <input 
+        type="range"
+         min="0" 
+         max="10" 
+         step="1" 
+         value="1" 
+         class="custom-range" 
+         id="rangeyears"/>
+        <div class="desde-hasta">
+        <p class="grayfont">1 año</p>
+        <p class="grayfont">10 años</p>
+        </div>
+        </div>
+        <p>Tasa correspondiente</p>
+        </div>
+        <div class="containtab-porcent">
+        <div class="titletab">
+        <p>Rendimientos</p>
+        </div>
+        <table class="tabla-de-porcentajes">
+        <thead>
+        <tr>
+        <th><p class="grayfont">Desde</p></th>
+        <th>1-2</th>
+        <th>3-4</th>
+        <th>5-6</th>
+        <th>7-9</th>
+        <th>10</th>
+        <th><p class="grayfont">años</p></th>
+        </tr>
+        <tr>
+        <td>$ 2,500</td>
+        <td id="valormin1-2">12%</td>
+        <td id="valormin3-4">14%</td>
+        <td id="valormin5-6">16%</td>
+        <td id="valormin7-9">18%</td>
+        <td id="valormin10">20%</td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>$ 25,000</td>
+        <td></td>
+        <td id="valormid3-4">16%</td>
+        <td id="valormid5-6">18%</td>
+        <td id="valormid7-9">20%</td>
+        <td id="valormid10">22%</td>
+        <td></td>
+        </tr>
+        <tr>
+        <td>$ 250,000</td>
+        <td></td>
+        <td></td>
+        <td id="valormax5-6">20%</td>
+        <td id="valormax7-9">22%</td>
+        <td id="valormid10">24%</td>
+        <td></td>
+        </tr>
+        </thead>
+        </table>
+        </div>
+        <div class="contain-preresult">
+        <div class="inversion">
+        <p>Con una inversión de</p>
+        <div class="monto-final">
+        <h3 id="monto"></h3>
+        </div>
+        </div>
+        <div class="rendimiento-bruto">
+        <p>Obtendrás un rendimiento bruto total de</p>
+        <div class="rendimiento">
+        <h2 class="greenfont" id="rendimiento"></h2>
+        </div>
+        </div>
+        </div>
+        <div class="contenedorboton">
+        <div class="boton-verde">
+        <a href="" class="elementor-button">
+        <span class="elementor-button-text">
+        SOLICITAR INFORMACIÓN
+        </span>
+        </a>
+        </div>    
+        </div>
+        </div>
+        <!-- contenedor de la derecha -->
+        <div class="right">
+        <div class="contain-right">
+        <div class="grafica">
+        <!-- Aqui va la grafica -->
+        <div class="progresscircle" id="progress-bar">
+        <svg width="100%" height="100%" viewBox="0 0 100 100">
+        <circle cx="50" cy="50" r="40" stroke="#2B2B2B" stroke-dasharray="251.32741228718345" stroke-dashoffset="0"></circle>
+        <circle cx="50" cy="50" r="40" stroke="#14DA13" stroke-dasharray="251.32741228718345" stroke-dashoffset="226.1946710584651"></circle>
+        <!-- <text x="50" y="50" id="progress-text">10%</text> -->
+        </svg>
+        </div>
+        <div class="circletext">
+        <div class="contenttext">
+        <p>Inversión</p>
+        <p id="inversion-circulo"></p>
+        </div>
+        <div class="contenttext">
+        <p class="tinygreenfont">Rendimientos totales</p>
+        <p class="greenfont" id="rendimientos-circulo"></p>        
+        </div>
+        </div>
+         <!-- Aquí termina la grafica -->
+        </div>
+        <div class="montoinversion">
+        <p>Monto de inversión</p>
+        <div class="rightmonto">
+        <div class="rendimientomensual">
+        <h2 id="montodeinversion"></h2>
+        <p class="grayfont">USD</p>
+        </div>
+        </div>
+        </div>
+        <div class="rendimientos">
+        <ul class="wcalcu-ul">
+        <div class="mensual">
+        <p>mensuales</p>
+        <div class="valormonthvalue">
+        <p id="permonth"></p>
+        <p class="greenporcent" id="porcentajemonth"></p>
+        </div>
+        </div>
+        <li class="wcalcu-list">
+        <div class="anuales">
+        <p>anuales</p>
+        <div class="valormonthvalue">
+        <p id="returnperyear"></p>
+        <p class="greenporcent" id="porcentajeanual"></p>
+        </div>
+        </div>
+        </li>
+        </ul>
+        <div class="rendimientototal">
+        <li class="wcalcu-list">
+        <div class="totalreturn">
+        <p class="blackfont">Totales a </p>
+        <p class="greenporcent" id="totalreturnyears"></p>
+        </div>
+        <div class="totalreturngreen">
+        <p class="tinygreen" id="rendimientototal"></p>
+        <p class="grayfont">USD</p>
+        </div>
+        </li>
+        </div>
+        </div>
+        <div class="line-comission">
+        <div class="lineagris"></div>
+        <div class="manageacount">
+        <p>Comisión por manejo de cuenta</p>
+        <div class="comision">
+        <p>-$ 100.00</p>
+        <p class="grayfont">anual</p>
+        </div>
+        </div>
+        </div>
+        </div>
     </div>
     </div>
-    <p>Inversión mínima de $ 2,500 USD</p>
     </div>
-    </div>
-    <div class="range-age">
-    <h4>Plazo a invertir</h4>
-    <p id="years"></p>
-    <div class="range-from">
-    <input 
-    type="range"
-     min="0" 
-     max="10" 
-     step="1" 
-     value="1" 
-     class="custom-range" 
-     id="rangeyears"/>
-    <div class="desde-hasta">
-    <p class="grayfont">1 año</p>
-    <p class="grayfont">10 años</p>
-    </div>
-    </div>
-    <p>Tasa correspondiente</p>
-    </div>
-    <div class="containtab-porcent">
-    <div class="titletab">
-    <p>Rendimientos</p>
-    </div>
-    <table>
-    <thead>
-    <tr>
-    <th><p class="grayfont">Desde</p></th>
-    <th>1-2</th>
-    <th>3-4</th>
-    <th>5-6</th>
-    <th>7-9</th>
-    <th>10</th>
-    <th><p class="grayfont">años</p></th>
-    </tr>
-    <tr>
-    <td>$ 2,500</td>
-    <td>12%</td>
-    <td>14%</td>
-    <td>16%</td>
-    <td>18%</td>
-    <td>20%</td>
-    <td></td>
-    </tr>
-    <tr>
-    <td>$ 25,000</td>
-    <td></td>
-    <td>16%</td>
-    <td>18%</td>
-    <td>20%</td>
-    <td>22%</td>
-    <td></td>
-    </tr>
-    <tr>
-    <td>$ 250,000</td>
-    <td></td>
-    <td></td>
-    <td>20%</td>
-    <td>22%</td>
-    <td>24%</td>
-    <td></td>
-    </tr>
-    </thead>
-    </table>
-    </div>
-    <div class="contain-preresult">
-    <div class="inversion">
-    <p>Con una inversión de</p>
-    <div class="monto-final">
-    <h3 id="monto"></h3>
-    </div>
-    </div>
-    <div class="rendimiento-bruto">
-    <p>Obtendrás un rendimiento bruto total de</p>
-    <div class="rendimiento">
-    <h2 class="greenfont" id="rendimiento"></h2>
-    </div>
-    </div>
-    </div>
-    <div class="contenedorboton">
-        <Button class="btngreen"><p>SOLICITAR INFORMACIÓN</p></Button>
-    </div>
-    </div>
-    <!-- contenedor de la derecha -->
-    <div class="right">
-    <div class="contain-right">
-    <div class="grafica">
-    <!-- Aqui va la grafica -->
-    <div class="progresscircle" id="progress-bar">
-    <svg width="100%" height="100%" viewBox="0 0 100 100">
-    <circle cx="50" cy="50" r="40" stroke="#2B2B2B" stroke-dasharray="251.32741228718345" stroke-dashoffset="0"></circle>
-    <circle cx="50" cy="50" r="40" stroke="#14DA13" stroke-dasharray="251.32741228718345" stroke-dashoffset="226.1946710584651"></circle>
-    <text x="50" y="50" id="progress-text">10%</text>
-    </svg>
-    </div>
-    <div class="circletext">
-    <div class="contenttext">
-    <p>Inversión</p>
-    <p id="inversion-circulo"></p>
-    </div>
-    <div class="contenttext">
-    <p class="tinygreenfont">Rendimientos totales</p>
-    <p class="greenfont" id="rendimientos-circulo"></p>        
-    </div>
-    </div>
-     <!-- Aquí termina la grafica -->
-    </div>
-    <div class="montoinversion">
-    <p>Monto de inversión</p>
-    <div class="rightmonto">
-    <div class="rendimientomensual">
-    <h2 id="montodeinversion"></h2>
-    <p class="grayfont">USD</p>
-    </div>
-    </div>
-    </div>
-    <div class="rendimientos">
-    <ul class="wcalcu-ul">
-    <li class="wcalcu-list">
-    <div class="mensual">
-    <p>mensuales</p>
-    <div class="valormonthvalue">
-    <p id="permonth"></p>
-    <p class="greenporcent" id="porcentajemonth"></p>
-    </div>
-    </div>
-    </li>
-    <li class="wcalcu-list">
-    <div class="anuales">
-    <p>anuales</p>
-    <div class="valormonthvalue">
-    <p id="returnperyear"></p>
-    <p class="greenporcent" id="porcentajeanual"></p>
-    </div>
-    </div>
-    </li>
-    </ul>
-    <div class="rendimientototal">
-     <li class="wcalcu-list">
-    <div class="totalreturn">
-    <p class="blackfont">Totales a </p>
-    <p class="greenporcent" id="totalreturnyears"></p>
-    </div>
-    <div class="totalreturngreen">
-    <p class="tinygreen" id="rendimientototal"></p>
-    <p class="grayfont">USD</p>
-    </div>
-    </li>
-    </div>
-    </div>
-    <div class="line-comission">
-    <hr class="lineagris"/>
-    <div class="manageacount">
-    <p>Comisión por manejo de cuenta</p>
-    <div class="comision">
-    <p>-$ 100.00</p>
-    <p class="grayfont">anual</p>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
-    </div>
+    
     <script src="./main.js"></script>
 </body>
 </html>

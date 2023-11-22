@@ -1,0 +1,710 @@
+@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;500;600;700&display=swap');
+
+body{
+    width: 100%;
+    margin: 0;
+    padding: 0;
+    font-family: 'Poppins', sans-serif;
+    background-color: #F2F5FA;
+}
+
+/* COLOR DE FUENTES */
+
+.green-font{
+    color: #14DA13;
+}
+
+.gray-font{
+    color: #BDBDBD;
+}
+
+.heavyweight{
+    font-weight: 700;
+}
+
+/* Calcu contains */
+.contain-calcu-mx{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    gap: 1em;
+}
+
+.containleft{
+    display: flex;
+    flex-direction: column;
+    padding: 0 1em 0 1em;
+    width: 55%;
+}
+
+.containright{
+    display: flex;
+    flex-direction: column;
+    padding: 0 1em 0 1em;
+    border-radius: 16px;
+    opacity: 0.699999988079071;
+    background:#FFF;
+    /* Dropshadow/Secondary */
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.08);
+    width: 45%;
+}
+
+/* Calcu GRAL */
+
+.head-title{
+    padding-bottom: 2em;
+}
+
+.contain-inputs{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    gap: 1.2em;
+}
+
+.select-person{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    width: 50%;
+}
+.select-div{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+.containbtnperson{
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+    gap: 8px;
+    /*cursor: pointer;*/
+}
+
+/* modal */
+.modal-person{
+    display: none;
+}
+
+.modal-person-active{
+    width: 30%;
+    border-radius: 16px;
+    opacity: 1;
+    background: var(--pure-white, #FFF);
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.08);
+    position: absolute;
+    padding: .8em 2em;
+    display: flex;
+    flex-direction: column;
+    font-size: 14px;
+    z-index: 999;
+}
+/* aqui termina el modal */
+
+.select-person{
+    border-radius: 4px;
+    border: 2px solid  #2B2B2B;
+    background: transparent;
+    /*padding: 0 2em;*/
+    display: flex;
+    justify-content: end;
+}
+
+select {
+    width: 100%;
+    border: none;
+    outline: none;
+    font-family: 'Poppins', sans-serif;
+    font-size: 16px;
+    /*padding-right: 10px;*/
+    text-align: right;
+    -moz-appearance: none;
+     text-indent: 0.01px;
+     text-overflow: '';
+     color:black;
+     background: transparent;
+    -webkit-appearance:none;
+    -ms-appearance:none;
+    -o-appearance:none;
+     appearance:none;
+    }
+
+select:focus-visible{
+    border: none;
+}
+
+.form-select {
+      background: url('https://wortev.capital/wp-content/uploads/2023/08/chevron-select.jpg') no-repeat;
+          background-position: 95% 50%;
+    padding-right: 2em;
+  }
+.contain-monto{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+}
+
+.monto{
+  width: 50%;
+    display: flex;
+    flex-direction: column;
+        text-align: end;
+}
+.inputext{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    text-align: end; 
+    border: 3px solid #14DA13;
+    border-radius: 4px;
+}
+
+.inputext input[type='text']:focus{
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+
+.redInput{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    text-align: end; 
+    border: 3px solid #b70000;
+    border-radius: 4px;
+}
+.redInput  input[type='text']:focus{
+    outline: none;
+    border: none;
+    background-color: transparent;
+}
+#inversion-mount {
+  color: #000;
+  text-align: right;
+  font-family: Poppins;
+  font-size: 16px;
+  font-style: normal;
+  font-weight: 600;
+  /* outline: none; */
+  border: none;
+  background-color: transparent;
+}
+
+.containinput{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    text-align: end; 
+    padding: 0px 12px;
+    align-items: baseline;
+}
+#inversion-mount{
+    color: #000;
+text-align: right;
+font-family: Poppins;
+font-size: 16px;
+font-style: normal;
+font-weight: 600;
+}
+.containinput p{
+    display: flex;
+    align-items: center;
+    font-size: 16px;
+}
+
+.redinput{
+    display: flex;
+    flex-direction: row;
+    justify-content: flex-end;
+    text-align: end; 
+    border: 3px solid #B70000;
+    border-radius: 4px;
+}
+.redinput input[type='text']{
+    font-family: 'Poppins', sans-serif;
+    font-size: 16;
+    font-weight: 600;
+    border:none;
+    text-align: right;
+    background-color: transparent;
+}
+.redinput input[type='text']:focus{
+    outline: none;
+}
+
+.inputext input[type='text']{
+    font-family: 'Poppins', sans-serif;
+    font-weight: 600;
+    border: none;
+    text-align: right;
+    background-color: transparent;
+}
+
+.inputext input[type="text"]:focus{
+    outline: none;
+}
+
+/* RANGE */
+
+.wcip-range {
+    -webkit-appearance: none;
+    appearance: none; 
+    width: 100%;
+    cursor: pointer;
+    outline: none;
+    border-radius: 15px;
+    height: 6px;
+    background: #2b2b2b;
+  }
+
+  .range {
+    position: relative;
+    padding-top: 1em;
+}
+
+.wcip-range::-webkit-slider-thumb {
+    z-index: 2;
+    position: relative;
+}
+.value2{
+    position: absolute;
+    top: -13px; 
+    left: 0;
+    width: 100%;
+    text-align: center;
+    transition: left 0.1s;
+}
+
+.anio{
+    width: 20px;
+    position: absolute;
+    top: -13px; 
+    left: 15px;
+    /* width: 100%; */
+    text-align: center;
+    transition: left 0.1s;
+    pointer-events: none !important;
+}
+
+.anios{
+    position: absolute;
+    top: -13px; 
+    left: 18px;
+    padding-left: 5px;
+    /* width: 100%; */
+    text-align: center;
+    transition: left 0.1s;
+    pointer-events: none !important;
+}
+
+.textrange{
+    display: flex;
+    flex-direction: row;
+}
+
+.anios{
+    display: none;
+}
+
+
+  .wcip-range::-webkit-slider-thumb {
+    -webkit-appearance: none;
+    appearance: none; 
+    height: 15px;
+    width: 15px;
+    background-color: #14DA13;
+    border-radius: 50%;
+    border: none;
+    transition: .2s ease-in-out;
+  }
+  
+  .wcip-range::-moz-range-thumb {
+    height: 15px;
+    width: 15px;
+    background-color: #14DA13;
+    border-radius: 50%;
+    border: none;
+    transition: .2s ease-in-out;
+  }
+  
+  .value2 { 
+    width: 10px;
+    text-align: center;
+    pointer-events: none !important;
+  }
+
+  .from-to{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    color: #767676;
+    pointer-events: none !important;
+  }
+
+  .from-to p{
+    pointer-events: none !important;
+  }
+
+  /* VALORES DE INVERSION Y RENDIMIENTOS */
+
+  .inversiontotal-left{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: 600;
+  }
+
+  .rendimientototal-left{
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    font-weight: 600;
+    align-items: center;
+  }
+
+  /* div pago rendimientos */
+
+  .pago-rendimientos{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    padding-top: 10px
+  }
+
+  .pago{
+    width: 40%;
+  }
+
+  .mensual-anual{
+    display: flex;
+    justify-content: space-between;
+    width: 60%;
+  }
+
+  .pagos{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+  }
+
+  .containright {
+    display: flex;
+    flex-direction: column;
+    padding: 2em 1em 2em 1em;
+    border-radius: 16px;
+    opacity: 1;
+    background: #FFF;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.08);
+    width: 45%;
+    align-items: center;
+  }
+  
+  /* CONTENEDOR BOTON*/
+
+.contenedorboton{
+        width: 100%;
+    display: flex;
+    justify-content: center;
+    padding-top: 1em;
+}
+
+.contenedorboton .boton-verde a {
+    background-color: var(--e-global-color-primary);
+    border-radius: 10px;
+}
+
+.contenedorboton .boton-verde a span {
+    color: var(--e-global-color-text);
+}
+
+  /* ESTILOS CIRCULOS */
+
+.grafica{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding-bottom: 1em
+}
+
+.progresscircle{
+    transform: rotate(270deg);
+}
+
+.circletext{
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    gap: 1em;
+    padding-top: 4em;
+    pointer-events: none;
+}
+
+.contenttext{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+}
+
+
+.contenttext p, h2{
+    margin: 0;
+    text-align: center;
+}
+
+/* Aqui editas el tamaÃ±o del circulo*/
+#progress-bar {
+    width: 300px;
+    height: 300px;
+    display: none;
+  }
+
+  #progress-bar circle {
+    fill: none;
+    stroke-width: 5;
+  }
+
+  .datos-tab{
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    gap: .9em;
+    /* padding-top: 1em; */
+  }
+
+  .datos-tab p{
+    margin: 0;
+  }
+
+  .tab{
+    width: 100%;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: center;
+    padding: 0;
+    margin: 0;
+  }
+
+  .valor-porcentaje{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    align-items: center;
+  }
+
+  .line{
+    width: 100%;
+    height: 1px;
+    background-color: #BDBDBD;
+    border: none;
+  }
+  
+  .mensual-operation{
+    display: flex;
+    flex-direction: row;
+    gap: 5px;
+    justify-content: end;
+    text-align: right;
+    color: #BDBDBD;
+    padding-top: 0;
+  }
+
+  .tabpfisica{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+    align-items: center;
+    /* gap: .8em; */
+    /* padding-top: 5px; */
+  }
+
+  .separador{
+    width: 100%;
+  }
+
+  .finalresult{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+  }
+
+  .black-line{
+    width: 100%;
+    height: 3px;
+    background-color: #2b2b2b;
+    border: none;
+    margin: 5px 0 5px 0;
+  }
+
+  /* ESTILOS GRAFICO FISICO */
+
+  #chart{
+    /* width: 300px; */
+    padding-top: 10px;
+  }
+
+  .apexcharts-legend.apx-legend-position-right{
+    display: none;
+  }
+  
+  path{
+    stroke: none;
+  }
+
+  #chart-container {
+    width: 300px;
+}
+
+table{
+  border: unset
+  
+}
+
+/* nuevos estilos para tabla */
+
+.tabcantidades{
+    width: 100%;
+}
+
+.numcantidades{
+    width: 25%;
+    text-align: end;
+    padding-right: 10px;
+}
+
+.porcentcant{
+    width: 15%;
+    text-align: start;
+}
+
+tr  td{
+  border:0px;
+  background-color: #ffffff !important;
+  margin: 0;
+  padding: 0;
+}
+
+th{
+  border:0px;
+  background-color: #ffffff !important;
+   margin: 0;
+  padding: 0;
+}
+
+.modalmenordemin{
+    display: none;
+    border-radius: 16px;
+    background:  #FFF;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.38);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 2em;
+  }
+
+.modalmax{
+    width: max-content;
+    display: none;
+    border-radius: 16px;
+    background:  #FFF;
+    box-shadow: 0px 4px 10px 0px rgba(0, 0, 0, 0.38);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    padding: 1.5em;
+    flex-direction: column;
+}
+
+.modalheader{
+  display: flex;
+  justify-content: end;
+}
+
+.modalheader img{
+  width: 20px;
+  height: auto;
+  pointer-events: auto;
+}
+
+.modalheader img:hover{
+    filter: invert(64%) sepia(39%) saturate(21%) hue-rotate(190deg) brightness(97%) contrast(92%);
+    cursor: pointer;
+}
+
+.modalmax p{
+  text-align: center;
+}
+
+ .info-vector{
+        padding-bottom:14px;
+    }
+
+@media screen and (max-width: 780px) and (min-width: 330px){
+    .contain-calcu-mx{
+        flex-direction: column;
+    }
+
+    .modal-person-active{
+        width: 85%;
+    }
+
+    .containleft{
+        width: 100%;
+    }
+
+    .select-person{
+      width:100%;
+  }
+  
+  .monto{
+      width:100%;
+  }
+
+    .select-div{
+        flex-direction: column;
+    }
+
+    .contain-monto{
+        flex-direction: column;
+    }
+
+    .containinput{
+        width: 100%;
+            align-items: baseline;
+    }
+
+    .containinput input{
+        width: 90%;
+    }
+
+    .pago-rendimientos{
+        flex-direction: column;
+    }
+
+    .mensual-anual{
+        width: 100%;
+    }
+
+    .containright{
+        width: 100%;
+    }
+    
+    .info-vector{
+        padding-bottom:14px;
+    }
+    .form-select {
+          background-position: 97% 50%;
+  }
+  
+  .modalmenordemin{
+      width:95% !important;
+  }
+  .modalmax{
+      width:95% !important;
+  }
+}

@@ -12,11 +12,38 @@ const returnTotal = document.getElementById('rendimientototal');
 const circleInversion = document.getElementById('inversion-circulo');
 const circleRendimiento = document.getElementById('rendimientos-circulo');
 
+// Define las constantes para los elementos <td>
+const valormin1_2 = document.getElementById('valormin1-2');
+const valormin3_4 = document.getElementById('valormin3-4');
+const valormin5_6 = document.getElementById('valormin5-6');
+const valormin7_9 = document.getElementById('valormin7-9');
+const valormin10 = document.getElementById('valormin10');
+const valormid3_4 = document.getElementById('valormid3-4');
+const valormid5_6 = document.getElementById('valormid5-6');
+const valormid7_9 = document.getElementById('valormid7-9');
+const valormid10 = document.getElementById('valormid10');
+const valormax5_6 = document.getElementById('valormax5-6');
+const valormax7_9 = document.getElementById('valormax7-9');
+const valormax_10 = document.getElementById('valormax10');
+
 inversionMount.addEventListener('keydown', function (event) {
   if (!(event.key === 'Backspace' || event.key === 'Delete') && !/\d/.test(event.key)) {
     event.preventDefault();
   }
 });
+
+const valorIndefinido = [
+  {1: 0},
+  {2: 0},
+  {3: 0},
+  {4: 0},
+  {5: 0},
+  {6: 0},
+  {7: 0},
+  {8: 0},
+  {9: 0},
+  {10: 0}
+];
 
 const valorMinimo = [
   {1: 0.12},
@@ -53,17 +80,29 @@ const valorMaximo = [
 
 let arrayAsignado = [];
 let resultadoRendimiento;
+let numeroIngresado; 
+
+function resultadoCirculo(numeroIngresado, resultadoRendimiento) {
+  const numero = parseFloat(numeroIngresado);
+  const rendimiento = parseFloat(resultadoRendimiento);
+  const sumaDeCantidades = numero + rendimiento;
+  const divisionDeCantidades = (rendimiento * 100) / sumaDeCantidades;
+  const resultadoDeCantidades = +divisionDeCantidades.toFixed(0);
+
+  return resultadoDeCantidades;
+}
+
+console.log(`este es el resultado de ${resultadoCirculo(numeroIngresado,resultadoRendimiento)}`);
+
+
 
 function defaultValues () {
+
+  
   if (inversionMount.value === '' || inversionMount.value === '0') {
     inversionMount.value = 2500;
-  }
-};
-
-inversionMount.addEventListener('input', (e) => {
-  const numeroIngresado = inversionMount.value;
-
-  defaultValues();
+  } 
+   numeroIngresado = inversionMount.value;
 
   if (numeroIngresado > 2499 && numeroIngresado <= 24999) {
     arrayAsignado = valorMinimo;
@@ -74,6 +113,10 @@ inversionMount.addEventListener('input', (e) => {
   } else if (numeroIngresado >= 250000) {
     arrayAsignado = valorMaximo;
     range.value = 5;
+  }
+
+  if (arrayAsignado === valorMinimo) {
+    valormin1_2.className = (selectedValue === '1' || selectedValue === '2') ? 'tinygreenfont' : '';
   }
 
   if (arrayAsignado === valorMinimo) {
@@ -106,12 +149,101 @@ inversionMount.addEventListener('input', (e) => {
   }
 
   // Si el value es igual a 0 no renderiza nada 
-  mount.textContent = `$ ${value !== 0 ? value : ''}`;
-  rightMonto.textContent = `$${value !== 0 ? value : ''}`
-  circleInversion.textContent = `$${value !== 0 ? value : ''}`
+  mount.textContent = `$ ${(value !== 0 ? value : '').toFixed(2)}`;
+  rightMonto.textContent = `$${(value !== 0 ? value : '').toFixed(2)}`
+  circleInversion.textContent = `$${(value !== 0 ? value : '').toFixed(2)}`
 
   console.log(rightMonto);
 
+
+  const porcentajeSeleccionado = selectedYears();
+  const resultadoRendimiento = porcent(value, porcentajeSeleccionado);
+  rendimientoBruto.textContent = `$ ${resultadoRendimiento}`;
+  returnTotal.textContent = `$ ${resultadoRendimiento}`;
+  circleRendimiento.textContent = `$ ${resultadoRendimiento}`;
+  console.log(porcentajeSeleccionado);
+  console.log(resultadoRendimiento);
+  textPosition();
+  
+
+  // AQUI SE RENDERIZA EL MONTO INICIAL
+  const resultadoMesesInicial = months(selectedValue, resultadoRendimiento);
+  rendimientoMensual.textContent = `$${resultadoMesesInicial} `;
+  console.log(resultadoMesesInicial);
+
+  // AQUI SE RENDERIZA EL PORCENTAJE EL PORCENTAJE MENSUAL
+  const resultadoPorcentajePerMonth = porcentajePerMonth(selectedValue, porcentajeSeleccionado);
+  porcentajeMensual.textContent = `${resultadoPorcentajePerMonth}%`;
+
+  // AQUI SE RENDERIZA LOS RENDIMIENTOS POR AÑO
+  const opRendimientoAnual = rendimientoPorAnio (resultadoRendimiento, selectedValue);
+  const rendimientoAnual = opRendimientoAnual.toFixed(2)
+  rendimientoPerYear.textContent = `$${rendimientoAnual}`;
+
+  // AQUI SE RENDERIZA EL PORCENTAJE POR AÑO
+  const resultadoPorcentajeYear = porcentajePorAnio(porcentajeSeleccionado, selectedValue);
+  returnPorcent.textContent = `${resultadoPorcentajeYear}%`;
+
+  updateRangeBackground()
+
+  const resultadoDeCirculo = resultadoCirculo(numeroIngresado, resultadoRendimiento);
+updateProgressBar(resultadoDeCirculo);
+
+
+
+updateTimeText();
+
+};
+
+
+inversionMount.addEventListener('input', (e) => {
+  const numeroIngresado = inversionMount.value
+
+  defaultValues();
+
+  if(numeroIngresado < 2500){
+    arrayAsignado = valorIndefinido;
+    range.value = 1;
+  } else if (numeroIngresado > 2499 && numeroIngresado <= 24999) {
+    arrayAsignado = valorMinimo;
+    range.value = '1';
+    console.log('aqui estamos en el valor minimo');
+  } else if (numeroIngresado > 24999 && numeroIngresado <= 249000) {
+    arrayAsignado = valorMedio;
+    range.value = '3';
+    console.log('aqui estamos en el medio');
+  } else if (numeroIngresado >= 250000) {
+    arrayAsignado = valorMaximo;
+    range.value = '5';
+    console.log('aqui es el valor max');
+  }
+  
+  updateTimeText()
+  
+  if (numeroIngresado === '0') {
+    inversionMount.value = '';
+  } else if (numeroIngresado.charAt(0) === '0') {
+    inversionMount.value = numeroIngresado.slice(1);
+  }  
+
+  const value = Number(inversionMount.value);
+
+  // SI EL VALOR ES MENOR A 2500 Rojo
+  if (value < 2500) {
+    invalidMount.className = 'redinput';
+  } else {
+    invalidMount.className = 'inputext';
+  }
+
+  // Si el value es igual a 0 no renderiza nada 
+  mount.textContent = `$ ${(value !== 0 ? value : '').toFixed(2)}`;
+  rightMonto.textContent = `$${(value !== 0 ? value : '').toFixed(2)}`
+  circleInversion.textContent = `$${(value !== 0 ? value : '').toFixed(2)}`
+
+  console.log(rightMonto);
+
+  updateRangeBackground();
+  
 
   const porcentajeSeleccionado = selectedYears();
   const resultadoRendimiento = porcent(value, porcentajeSeleccionado);
@@ -140,20 +272,14 @@ inversionMount.addEventListener('input', (e) => {
   const resultadoPorcentajeYear = porcentajePorAnio(porcentajeSeleccionado, selectedValue);
   returnPorcent.textContent = `${resultadoPorcentajeYear}%`;
 
-  const porcentajeProgress = porcentajeSeleccionado * 100;
-  const resultProgress = porcentajeProgress.toFixed(0)
-  // Aqui es donde recibiria el valor a renderizar
-setTimeout(function() {
-  // Prueba cambiando el valor
-updateProgressBar(resultProgress);
-}, 1000);
+  const resultadoDeCirculo = resultadoCirculo(numeroIngresado, resultadoRendimiento);
+  updateProgressBar(resultadoDeCirculo);
 
-updateRangeBackground();
-  
 });
 
-window.addEventListener('load', defaultValues
-);
+
+
+window.addEventListener('load', defaultValues);
 
 
 const range = document.getElementById('rangeyears');
@@ -161,46 +287,46 @@ const time = document.getElementById('years');
 
 // FUNCION PARA EL COLOR DEL RANGE
 function updateRangeBackground() {
-  const tempSliderValue = range.value;
+  const tempSliderValue = Number(range.value); // Convierte el valor a número
   const progress = (tempSliderValue / range.max) * 100;
   range.style.background = `linear-gradient(to right, #14DA13 ${progress}%, #2B2B2B ${progress}%)`;
+  
 }
+
 
 // LLAMADA INICIAL PARA COLOR DE RANGE
 updateRangeBackground();
 
 const selectedValue = range.value;
 time.textContent = `${selectedValue} ${selectedValue === '1' ? 'año' : 'años'}`;
-textPosition();
 returnTotalYears.textContent = `${selectedValue} ${selectedValue === '1' ? 'año' : 'años'}`;
-
+textPosition();
 function defaultRange () {
   if (range.value === '' || range.value === '0') {
     range.value = '1';
   }
 };
 
+
+
 range.addEventListener('input', (e) => {
   let selectedValue = range.value;
-  time.textContent = `${selectedValue} ${selectedValue === '1' ? 'año' : 'años'}`;
-  returnTotalYears.textContent = `${selectedValue} ${selectedValue === '1' ? 'año' : 'años'}`;
+  const numeroIngresado = inversionMount.value;
 
   const porcentajeSeleccionado = selectedYears();
   const resultadoRendimiento = porcent(Number(inversionMount.value), porcentajeSeleccionado);
   rendimientoBruto.textContent = `$ ${resultadoRendimiento}`;
   returnTotal.textContent = `$ ${resultadoRendimiento}`;
+  circleRendimiento.textContent = `$ ${resultadoRendimiento}`;
 
-  textPosition();
-  defaultRange ()
-
-  if (range.value < 1) {
-    range.value = 1;
-  }
   
-
+  textPosition();
+  defaultRange ();
+  updateTimeText();
+  
   // AQUI ESTA EL COLOR DEL SLIDER
   updateRangeBackground();
-
+  
   // AQUI ESTA EL RENDIMIENTO POR MES 
   const resultadoMeses = months(selectedValue, resultadoRendimiento);
   rendimientoMensual.textContent = `$${resultadoMeses} `;
@@ -218,26 +344,77 @@ range.addEventListener('input', (e) => {
   const resultadoPorcentajeYear = porcentajePorAnio(porcentajeSeleccionado, selectedValue);
   returnPorcent.textContent = `${resultadoPorcentajeYear}%`;
 
-  const porcentajeProgress = porcentajeSeleccionado * 100;
-  const resultProgress = porcentajeProgress.toFixed(0)
-  // Aqui es donde recibiria el valor a renderizar
-setTimeout(function() {
-  // Prueba cambiando el valor
-updateProgressBar(resultProgress);
-}, 1000);
-  
+  const resultadoDeCirculo = resultadoCirculo(numeroIngresado, resultadoRendimiento);
+  updateProgressBar(resultadoDeCirculo);
+
+  if (arrayAsignado === valorMinimo) {
+    valormin1_2.className = (selectedValue === '1' || selectedValue === '2') ? 'tinygreenfont' : '';
+    valormin3_4.className = (selectedValue === '3' || selectedValue === '4') ? 'tinygreenfont' : '';
+    valormin5_6.className = (selectedValue === '5' || selectedValue === '6') ? 'tinygreenfont' : '';
+    valormin7_9.className = (selectedValue === '7' || selectedValue === '8' || selectedValue === '9') ? 'tinygreenfont' : '';
+    valormin10.className = (selectedValue === '10') ? 'tinygreenfont' : '';
+  } else {
+    valormin1_2.className = (selectedValue === '1' || selectedValue === '2') ? '' : '';
+    valormin3_4.className = (selectedValue === '3' || selectedValue === '4') ? '' : '';
+    valormin5_6.className = (selectedValue === '5' || selectedValue === '6') ? '' : '';
+    valormin7_9.className = (selectedValue === '7' || selectedValue === '8' || selectedValue === '9') ? '' : '';
+    valormin10.className = (selectedValue === '10') ? '' : '';
+  }
+  // Aquí establecemos las clases para valorMedio
+  if (arrayAsignado === valorMedio) {
+    valormid3_4.className = (selectedValue === '3' || selectedValue === '4') ? 'tinygreenfont' : '';
+    valormid5_6.className = (selectedValue === '5' || selectedValue === '6') ? 'tinygreenfont' : '';
+    valormid7_9.className = (selectedValue === '7' || selectedValue === '8' || selectedValue === '9') ? 'tinygreenfont' : '';
+    valormid10.className = (selectedValue === '10') ? 'tinygreenfont' : '';
+  } else {
+    valormid3_4.className = (selectedValue === '3' || selectedValue === '4') ? '' : '';
+    valormid5_6.className = (selectedValue === '5' || selectedValue === '6') ? '' : '';
+    valormid7_9.className = (selectedValue === '7' || selectedValue === '8' || selectedValue === '9') ? '' : '';
+    valormid10.className = (selectedValue === '10') ? '' : '';
+  }
+  // Aquí establecemos las clases para valorMaximo
+  if (arrayAsignado === valorMaximo) {
+    valormax5_6.className = (selectedValue === '5' || selectedValue === '6') ? 'tinygreenfont' : '';
+    valormax7_9.className = (selectedValue === '7' || selectedValue === '8' || selectedValue === '9') ? 'tinygreenfont' : '';
+    valormax_10.className = (selectedValue === '10') ? 'tinygreenfont' : '';
+  } else {
+    valormax5_6.className = (selectedValue === '5' || selectedValue === '6') ? '' : '';
+    valormax7_9.className = (selectedValue === '7' || selectedValue === '8' || selectedValue === '9') ? '' : '';
+    valormax_10.className = (selectedValue === '10') ? '' : '';
+  }
+
 });
 
+
+
+function updateTimeText() {
+  const selectedValue = Number(range.value);
+  time.textContent = `${selectedValue} ${selectedValue === 1 ? 'año' : 'años'}`;
+  returnTotalYears.textContent = `${selectedValue} ${selectedValue === 1 ? 'año' : 'años'}`;
+}
+updateTimeText()
+
 function selectedYears() {
-  const objetoEncontrado = arrayAsignado.find(objeto => Object.keys(objeto)[0] == range.value);
-  const porcentajeSeleccionado = objetoEncontrado ? objetoEncontrado[range.value] : null;
-  
+  const numeroIngresado = inversionMount.value
+  const selectedValue = Number(range.value); // Convierte el valor a número
+
+  const objetoEncontrado = arrayAsignado.find(objeto => Object.keys(objeto)[0] == selectedValue);
+  const porcentajeSeleccionado = objetoEncontrado ? objetoEncontrado[selectedValue] : null;
+
+  if (selectedValue < 1) {
+    range.value = 1;
+    selectedValue = 1;
+  }
+
+  updateTimeText()
   return porcentajeSeleccionado;
 }
+
 
 function porcent(valor, porcentajeSeleccionado) {
   const operacion = valor * porcentajeSeleccionado;
   const resultado = operacion.toFixed(2);
+
   return  resultado;
 }
 
@@ -245,6 +422,7 @@ function months(selectedValue, resultadoRendimiento){
   const multiplicacionMeses= 12 * selectedValue;
   const divisionMeses= resultadoRendimiento/multiplicacionMeses;
   resultadoMeses = divisionMeses.toFixed(2)
+
   return resultadoMeses
 }
 
@@ -260,6 +438,7 @@ function porcentajePerMonth(selectedValue, porcentajeSeleccionado){
 function rendimientoPorAnio (resultadoRendimiento, selectedValue) {
   const rendimientoEntreAnios = resultadoRendimiento / selectedValue;
   
+
   return rendimientoEntreAnios;
 }
 
@@ -268,6 +447,7 @@ function porcentajePorAnio(porcentajeSeleccionado, selectedValue){
   const multiplicacionPorcentajeAnios = porcentajeEntreAnios * 100;
   const resultadoPorcentajeAnios = multiplicacionPorcentajeAnios.toFixed(0);
 
+  
   return resultadoPorcentajeAnios;
 }
 
@@ -332,35 +512,14 @@ function updateProgressBar(progress) {
   const circumference = 2 * Math.PI * radius;
   const offset = circumference - (progress / 100) * circumference;
 
+  progressCircle.style.transition = 'stroke-dashoffset 0.3s ease';
   progressCircle.setAttribute('stroke-dashoffset', offset);
-  progressText.textContent = `${progress}%`;
+  // progressText.textContent = `${progress}%`;
 
 }
 
 // Create the progress bar
 createProgressBar();
 
-// Aqui es donde recibiria el valor a renderizar
-// setTimeout(function() {
-//     // Prueba cambiando el valor
-//   updateProgressBar(selectedYears.porcentajeSeleccionado);
-// }, 1000);
-
-const porcentajeProgress = porcentajeSeleccionado * 100;
-const resultProgress = porcentajeProgress.toFixed(0)
-  // Aqui es donde recibiria el valor a renderizar
-setTimeout(function() {
-  // Prueba cambiando el valor
-updateProgressBar(resultProgress);
-}, 1000);
-
-// ************************************************************
-// Esta es la suma de las cantidades
-
-// function resultadoCirculo(value, resultadoRendimiento) {
-//   const sumaDeCantidades = value + resultadoRendimiento;
-//   const divisionDeCantidades = (resultadoRendimiento *100) / sumaDeCantidades ;
-//   const resultadoDeCantidades = divisionDeCantidades.toFixed(0)
-
-//   return resultadoDeCantidades
-// }
+const resultadoDeCirculo = resultadoCirculo(numeroIngresado, resultadoRendimiento);
+updateProgressBar(resultadoDeCirculo);
